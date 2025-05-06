@@ -1,0 +1,61 @@
+// Enum for appointment status
+Enum AppointmentStatus {
+  Scheduled
+  Completed
+  Cancelled
+}
+
+// Department Table
+Table Department {
+  department_id int [pk, increment]
+  name varchar(100) [not null, unique]
+}
+
+// Doctor Table
+Table Doctor {
+  doctor_id int [pk, increment]
+  name varchar(100) [not null]
+  specialization varchar(100)
+  phone varchar(20)
+  email varchar(100) [unique]
+  department_id int
+}
+
+// Patient Table
+Table Patient {
+  patient_id int [pk, increment]
+  name varchar(100) [not null]
+  date_of_birth date
+  gender enum('Male', 'Female', 'Other')
+  phone varchar(20)
+  email varchar(100) [unique]
+  address text
+}
+
+// Appointment Table
+Table Appointment {
+  appointment_id int [pk, increment]
+  patient_id int [not null]
+  doctor_id int [not null]
+  appointment_date datetime [not null]
+  status AppointmentStatus [not null, default: 'Scheduled']
+  notes text
+}
+
+// MedicalRecord Table
+Table MedicalRecord {
+  record_id int [pk, increment]
+  patient_id int [not null]
+  doctor_id int [not null]
+  visit_date date [not null]
+  diagnosis text
+  prescription text
+}
+
+// Relationships
+
+Ref: Doctor.department_id > Department.department_id
+Ref: Appointment.patient_id > Patient.patient_id
+Ref: Appointment.doctor_id > Doctor.doctor_id
+Ref: MedicalRecord.patient_id > Patient.patient_id
+Ref: MedicalRecord.doctor_id > Doctor.doctor_id
