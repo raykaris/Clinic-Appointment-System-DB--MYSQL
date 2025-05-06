@@ -49,3 +49,16 @@ The database is normalized and includes structured relationships with appropriat
 - One department → many doctors
 - One doctor → many appointments & medical records
 - One patient → many appointments & medical records
+
+---
+
+## 📦 Setup Instructions
+
+1. Clone this repo:
+   ```bash
+   git clone https://github.com/raykaris/Clinic-Appointment-System-DB--MYSQL.git
+   cd Clinic-Appointment-System-DB--MYSQL
+   
+## Import the SQL script into MYSQL
+    ```bash
+    SOURCE clinic.sql;
